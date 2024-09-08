@@ -1,18 +1,31 @@
 import Banner from '@/components/ui/banner';
+import { BannerSkeleton } from '@/components/ui/banner/Banner';
+import { BannerType } from '@/components/ui/banner/banner.types';
+import Discover from '@/components/ui/discover/discover';
+import ProductHightlights, { ProductHightlightsSkeleton } from '@/components/ui/product-highlights/product-highlights';
+import TwoColumnLayout from '@/components/ui/two-column-layout/two-column-layout';
+import db from '@/lib/firestore';
+import { collection, getDocs } from '@firebase/firestore';
+import { Suspense } from 'react';
 
-export default function Home() {
-  const bannerInfo = {
-    title: 'Welcome to the MigStore',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis, velit in egestas posuere, nibh ex varius orci, at venenatis ante orci non eros. Cras euismod, nisi quis vehicula efficitur, urna turpis finibus augue, sit amet hendrerit lorem urna ut lectus.',
-    imgUrl: '/assets/images/plant-banner.png',
-    cta: {
-      title: 'Find More',
-      link: '/products',
-    },
-  };
-
+export default async function Home() {
   return (
-    <Banner {...bannerInfo} />
+    <>
+      <Suspense fallback={<BannerSkeleton />}>
+        <HomepageBanner />
+      </Suspense>
+      <TwoColumnLayout />
+      <Discover />
+      <Suspense fallback={<ProductHightlightsSkeleton />}>
+        <ProductHightlights />
+      </Suspense>
+    </>
   );
+}
+
+async function HomepageBanner() {
+  const querySnapshot = await getDocs(collection(db, "homepage-banner"))
+  const banners = querySnapshot.docs.map((doc) => ({ ...doc.data() as BannerType }))
+
+  return <Banner banners={banners} />
 }

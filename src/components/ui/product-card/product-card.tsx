@@ -25,6 +25,8 @@ export const ProductCard = ({ id, title, imgUrl, price, badges }: Props) => {
               objectFit="cover"
               layout="fill"
               className='hover:scale-110 transition-all duration-500'
+              width={0}
+              height={0}
             />
           </div>
           <CardTitle className="text-sm font-bold text">{title}</CardTitle>

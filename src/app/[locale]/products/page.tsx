@@ -2,14 +2,7 @@ import { Suspense } from 'react';
 import db from '@/lib/firestore';
 import { collection, getDocs } from "firebase/firestore";
 import { ProductCard, ProductSkeleton } from '@/components/ui/product-card/product-card';
-
-type ProductType = {
-  id: string;
-  title: string;
-  imgUrl: string;
-  price: string;
-  badges: [];
-};
+import { ProductType } from '@/interfaces/product';
 
 export default function Products() {
   return (

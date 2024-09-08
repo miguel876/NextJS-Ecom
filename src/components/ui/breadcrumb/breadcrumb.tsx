@@ -8,7 +8,7 @@ import Link from 'next/link';
 export const Breadcrumb = () => {
   const pathname = usePathname();
   const pathNames = pathname.split('/').filter(path => path)
-
+    
   return (
     <SBreadcrumb className='container my-4'>
       <BreadcrumbList>
@@ -19,15 +19,17 @@ export const Breadcrumb = () => {
             return (
               <BreadcrumbItem key={path}>
                 {
-                  pathNames.length - 1 === i ?
-                    <BreadcrumbPage>{path}</BreadcrumbPage>
-                    :
-                    <>
-                      <BreadcrumbLink asChild>
-                        <Link href={href}>{path}</Link>
-                      </BreadcrumbLink>
-                      <BreadcrumbSeparator />
-                    </>
+                  pathNames.length > 1 && (
+                    pathNames.length - 1 === i ?
+                      <BreadcrumbPage>{path}</BreadcrumbPage>
+                      :
+                      <>
+                        <BreadcrumbLink asChild>
+                          <Link href={href}>{path}</Link>
+                        </BreadcrumbLink>
+                        <BreadcrumbSeparator />
+                      </>
+                  )
                 }
               </BreadcrumbItem>
             )
