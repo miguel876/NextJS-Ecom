@@ -1,8 +1,11 @@
 import Banner from '@/components/ui/banner';
 import { BannerSkeleton } from '@/components/ui/banner/Banner';
 import { BannerType } from '@/components/ui/banner/banner.types';
-import Discover from '@/components/ui/discover/discover';
-import ProductHightlights, { ProductHightlightsSkeleton } from '@/components/ui/product-highlights/product-highlights';
+import { ContactUs } from '@/components/ui/contact-us';
+import { Discover } from '@/components/ui/discover';
+import ProductHightlights, {
+  ProductHightlightsSkeleton,
+} from '@/components/ui/product-highlights/product-highlights';
 import TwoColumnLayout from '@/components/ui/two-column-layout/two-column-layout';
 import db from '@/lib/firestore';
 import { collection, getDocs } from '@firebase/firestore';
@@ -19,13 +22,16 @@ export default async function Home() {
       <Suspense fallback={<ProductHightlightsSkeleton />}>
         <ProductHightlights />
       </Suspense>
+      <ContactUs />
     </>
   );
 }
 
 async function HomepageBanner() {
-  const querySnapshot = await getDocs(collection(db, "homepage-banner"))
-  const banners = querySnapshot.docs.map((doc) => ({ ...doc.data() as BannerType }))
+  const querySnapshot = await getDocs(collection(db, 'homepage-banner'));
+  const banners = querySnapshot.docs.map((doc) => ({
+    ...(doc.data() as BannerType),
+  }));
 
-  return <Banner banners={banners} />
+  return <Banner banners={banners} />;
 }

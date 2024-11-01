@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import db from '@/lib/firestore';
-import { collection, getDocs } from "firebase/firestore";
-import { ProductCard, ProductSkeleton } from '@/components/ui/product-card/product-card';
+import { collection, getDocs } from 'firebase/firestore';
 import { ProductType } from '@/interfaces/product';
+import { ProductCard, ProductSkeleton } from '@/components/ui/product-card';
 
 export default function Products() {
   return (
@@ -10,14 +10,15 @@ export default function Products() {
       <Suspense fallback={<ProductSkeleton />}>
         <ProductsList />
       </Suspense>
-
     </div>
   );
 }
 
 const ProductsList = async () => {
-  const querySnapshot = await getDocs(collection(db, "products"))
-  const products = querySnapshot.docs.map((doc) => ({ ...doc.data() as ProductType }))
+  const querySnapshot = await getDocs(collection(db, 'products'));
+  const products = querySnapshot.docs.map((doc) => ({
+    ...(doc.data() as ProductType),
+  }));
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-2">

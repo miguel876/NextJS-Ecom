@@ -2,6 +2,10 @@
     "labels": {
         "discover": "Discover",
         "discoverText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed viverra enim, dignissim lacinia est.",
-        "viewProducts": "View all products"
+        "viewProducts": "View all products",
+        "contactUs": "Contact us",
+        "send": "Send",
+        "loading": "Loading...",
+        "email": "Email"
     }
 }

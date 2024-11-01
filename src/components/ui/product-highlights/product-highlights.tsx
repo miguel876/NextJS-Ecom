@@ -1,28 +1,30 @@
-"use server"
+'use server';
 
-import { ProductType } from "@/interfaces/product"
-import db from "@/lib/firestore"
-import { collection, getDocs, query, where } from "@firebase/firestore"
-import { ProductCard } from "../product-card/product-card";
-import { Skeleton } from "../skeleton";
+import { ProductType } from '@/interfaces/product';
+import db from '@/lib/firestore';
+import { collection, getDocs, query, where } from '@firebase/firestore';
+import { Skeleton } from '../skeleton';
+import { ProductCard } from '../product-card';
 
 export default async function ProductHightlights() {
   const highlightsQuery = query(
-    collection(db, "products"),
-    where("isHighlight", "==", true)
+    collection(db, 'products'),
+    where('isHighlight', '==', true)
   );
 
   const querySnapshot = await getDocs(highlightsQuery);
-  
+
   const products = querySnapshot.docs.map((doc) => ({
-    ...doc.data() as ProductType,
+    ...(doc.data() as ProductType),
   }));
 
   return (
-       <div className="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-2">
-            { products.map((product) => <ProductCard key={product.title} {...product} />) }
-        </div>
-  )
+    <div className="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-2">
+      {products.map((product) => (
+        <ProductCard key={product.title} {...product} />
+      ))}
+    </div>
+  );
 }
 
 export async function ProductHightlightsSkeleton() {

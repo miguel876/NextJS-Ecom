@@ -1,5 +1,9 @@
 {
     "labels": {
-        "discover": "Descubra"
+        "discover": "Descubra",
+        "contactUs": "Contacte-nos",
+        "send": "Enviar",
+        "loading": "A carregar...",
+        "email": "Email"
     }
 }

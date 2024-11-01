@@ -8,7 +8,11 @@ const GoogleLogin = () => {
     signIn('google');
   };
 
-  return <Button onClick={handleGoogleLogin}>Sign in with Google</Button>;
+  return (
+    <Button size="sm" onClick={handleGoogleLogin} variant="outline">
+      Sign in
+    </Button>
+  );
 };
 
 export default GoogleLogin;
