@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Input } from '../input';
 import { useTranslations } from 'next-intl';
 import { useFormState } from 'react-dom';
@@ -10,6 +10,10 @@ import { sendEmail } from '@/actions/contact-us';
 export const ContactUs = () => {
   const translate = useTranslations('labels');
   const [state, formAction] = useFormState(sendEmail, undefined);
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   return (
     <div className="container flex items-center mt-20 mb-10 flex-col">

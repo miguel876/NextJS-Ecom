@@ -7,5 +7,9 @@
         "send": "Send",
         "loading": "Loading...",
         "email": "Email"
+    },
+    "menus": {
+        "home": "Homepage",
+        "products": "Products"
     }
 }

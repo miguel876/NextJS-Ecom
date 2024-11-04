@@ -5,5 +5,9 @@
         "send": "Enviar",
         "loading": "A carregar...",
         "email": "Email"
+    },
+    "menus": {
+        "home": "Homepage",
+        "products": "Produtos"
     }
 }

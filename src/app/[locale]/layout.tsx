@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/common/navbar';
+import Header from '@/components/common/header';
 import Footer from '@/components/common/footer';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Providers } from './providers';
@@ -31,7 +31,7 @@ export default async function LocaleLayout({
         <Providers>
           <GoogleOAuthProvider clientId={config.googleAuthId}>
             <NextIntlClientProvider messages={messages}>
-              <Navbar />
+              <Header />
               <main>{children}</main>
               <Footer />
             </NextIntlClientProvider>

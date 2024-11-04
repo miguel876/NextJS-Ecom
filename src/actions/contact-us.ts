@@ -19,6 +19,7 @@ export async function sendEmail(prevState: any, formData: FormData) {
         message: 'Invalid fields',
       };
     }
+    console.log(validatedFields);
 
     // Send email using your email service
     await resend.emails.send({

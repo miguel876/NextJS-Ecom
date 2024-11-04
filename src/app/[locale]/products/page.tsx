@@ -4,6 +4,8 @@ import { collection, getDocs } from 'firebase/firestore';
 import { ProductType } from '@/interfaces/product';
 import { ProductCard, ProductSkeleton } from '@/components/ui/product-card';
 
+const PRODUCTS_PER_PAGE = 10;
+
 export default function Products() {
   return (
     <div className="container flex gap-2">
@@ -18,10 +20,11 @@ const ProductsList = async () => {
   const querySnapshot = await getDocs(collection(db, 'products'));
   const products = querySnapshot.docs.map((doc) => ({
     ...(doc.data() as ProductType),
-  }));
+  }))
+;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-3">
       {products.map((product) => (
         <ProductCard key={product.title} {...product} />
       ))}

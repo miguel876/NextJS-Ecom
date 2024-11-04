@@ -8,18 +8,19 @@ import {
   DropdownMenu as CNDropdownMenu,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { authConfig } from '@/lib/auth';
 import { getInitials } from '@/lib/utils';
-import { getServerSession } from 'next-auth';
-import { AiOutlineShopping } from 'react-icons/ai';
+import { CiShoppingCart } from 'react-icons/ci';
 import DropdownMenu from './dropdown';
 import ThemeSwitch from '@/components/ui/theme-switch';
 import menus from './menus.json';
 import { useSession } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 
-const Navbar = () => {
+const Header = () => {
   const { data: session } = useSession();
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,7 +34,9 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed z-10 top-0 w-full transition-colors duration-300 ${
+      className={`${
+        isHomePage ? 'fixed' : 'sticky'
+      } z-10 top-0 w-full transition-colors duration-300 ${
         scrolled ? 'bg-background' : ''
       }`}
     >
@@ -72,7 +75,7 @@ const Navbar = () => {
                   <DropdownMenu />
                 </CNDropdownMenu>
               )}
-              <AiOutlineShopping size={20} />
+              <CiShoppingCart size={20} />
             </div>
           </div>
         </div>
@@ -81,4 +84,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;
