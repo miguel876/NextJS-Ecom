@@ -1,33 +1,34 @@
 import { Suspense } from 'react';
-import db from '@/lib/firestore';
-import { collection, getDocs } from 'firebase/firestore';
-import { ProductType } from '@/interfaces/product';
 import { ProductCard, ProductSkeleton } from '@/components/ui/product-card';
+import Filters from '@/components/ui/filters';
+import { getProducts } from '@/lib/db';
 
-const PRODUCTS_PER_PAGE = 10;
+export default async function Products(props: {
+  searchParams: Promise<{ q: string; offset: string }>;
+}) {
+  const searchParams = await props.searchParams;
+  const offset = searchParams.offset ?? 0;
 
-export default function Products() {
   return (
-    <div className="container flex gap-2">
+    <div className="container">
       <Suspense fallback={<ProductSkeleton />}>
-        <ProductsList />
+        <ProductsList offset={Number(offset)} />
       </Suspense>
     </div>
   );
 }
 
-const ProductsList = async () => {
-  const querySnapshot = await getDocs(collection(db, 'products'));
-  const products = querySnapshot.docs.map((doc) => ({
-    ...(doc.data() as ProductType),
-  }))
-;
+const ProductsList = async ({ offset }: { offset: number }) => {
+  const { products } = await getProducts('', offset);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-3">
-      {products.map((product) => (
-        <ProductCard key={product.title} {...product} />
-      ))}
-    </div>
+    <>
+      <Filters />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-3">
+        {products.map((product) => (
+          <ProductCard key={product.id} {...product} />
+        ))}
+      </div>
+    </>
   );
 };

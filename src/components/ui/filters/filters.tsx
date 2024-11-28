@@ -1,41 +1,40 @@
-import React from 'react'
-import { Checkbox } from '../checkbox';
+'use client';
+
+import React from 'react';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+import { CiFilter } from 'react-icons/ci';
+import { Button } from '../button';
+import { useTranslations } from 'next-intl';
 
 const Filters = () => {
+  const translate = useTranslations('labels');
+
   return (
-    <div className='bg-muted h-full basis-1/4 rounded-sm p-2'>
-        <div className='text-md'>Filters</div>
-        <div>
-            Stock
-            <div>
-                <Checkbox id="in-stock" />
-                <label
-                    htmlFor="in-stock"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                    In Stock
-                </label>
-                <Checkbox id="without-stock" />
-                <label
-                    htmlFor="without-stock"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                    Without Stock
-                </label>
-            </div>
-        </div>
-        <div>
-            Price
-        </div>
-        <div>
-            Product State
-            <div>
-                New
-                Promotion
-            </div>
-        </div>
-    </div>
-  )
-}
+    <Sheet>
+      <SheetTrigger>
+        <Button
+          asChild
+          variant={'outline'}
+          className="float-end mb-3 text-xs gap-1 mt-[-30px]"
+        >
+          <CiFilter size={18} />
+        </Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Are you absolutely sure?</SheetTitle>
+          <SheetDescription></SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  );
+};
 
 export default Filters;

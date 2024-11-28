@@ -1,7 +1,9 @@
-export interface ProductType {
-  id: string;
-  title: string;
-  imgUrl: string;
+export interface Product {
+  id: number;
+  imageUrl: string;
+  name: string;
+  status: 'active' | 'inactive' | 'archived';
   price: string;
-  badges: [];
-};
+  stock: number;
+  availableAt: Date;
+}

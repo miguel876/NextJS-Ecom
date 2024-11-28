@@ -4,7 +4,8 @@
         "contactUs": "Contacte-nos",
         "send": "Enviar",
         "loading": "A carregar...",
-        "email": "Email"
+        "email": "Email",
+        "filter": "Filtrar e Ordenar"
     },
     "menus": {
         "home": "Homepage",

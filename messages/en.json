@@ -6,7 +6,8 @@
         "contactUs": "Contact us",
         "send": "Send",
         "loading": "Loading...",
-        "email": "Email"
+        "email": "Email",
+        "filter": "Filter and Order"
     },
     "menus": {
         "home": "Homepage",
