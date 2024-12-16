@@ -2,24 +2,32 @@ import { Suspense } from 'react';
 import { ProductCard, ProductSkeleton } from '@/components/ui/product-card';
 import Filters from '@/components/ui/filters';
 import { getProducts } from '@/lib/db';
+import { FilterParams } from '@/interfaces/product';
 
 export default async function Products(props: {
-  searchParams: Promise<{ q: string; offset: string }>;
+  searchParams: Promise<FilterParams>;
 }) {
   const searchParams = await props.searchParams;
-  const offset = searchParams.offset ?? 0;
+  const filters = {
+    ...searchParams,
+    offset: searchParams.offset ?? 0,
+  };
 
   return (
     <div className="container">
       <Suspense fallback={<ProductSkeleton />}>
-        <ProductsList offset={Number(offset)} />
+        <ProductsList filters={filters} />
       </Suspense>
     </div>
   );
 }
 
-const ProductsList = async ({ offset }: { offset: number }) => {
-  const { products } = await getProducts('', offset);
+const ProductsList = async ({ filters }: { filters: FilterParams }) => {
+  const { products } = await getProducts({
+    filters,
+    limit: 6,
+    offset: filters.offset,
+  });
 
   return (
     <>
