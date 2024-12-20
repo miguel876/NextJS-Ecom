@@ -5,7 +5,7 @@ import { ProductCard } from '../product-card';
 import { getProducts } from '@/lib/db';
 
 export default async function ProductHightlights() {
-  const { products } = await getProducts({ limit: 3, offset: 0 });
+  const { products } = await getProducts({ page: 1, pageSize: 3 });
 
   return (
     <div className="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-2">

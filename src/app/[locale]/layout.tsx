@@ -7,7 +7,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Providers } from './providers';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import config from '../../../configs.json';
+import SmoothScroll from '@/components/ui/smooth-scroll';
 
 const font = Lato({ weight: ['400'], subsets: ['latin'] });
 
@@ -27,13 +27,17 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning className="h-full w-full">
-      <body className={`${font.className} bg-zinc-200 dark:bg-zinc-950`}>
+      <body
+        className={`${font.className} bg-zinc-200 dark:bg-zinc-950 min-h-screen`}
+      >
         <Providers>
-          <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID || ""}>
+          <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID || ''}>
             <NextIntlClientProvider messages={messages}>
-              <Header />
-              <main>{children}</main>
-              <Footer />
+              <SmoothScroll>
+                <Header />
+                <main>{children}</main>
+                <Footer />
+              </SmoothScroll>
             </NextIntlClientProvider>
           </GoogleOAuthProvider>
         </Providers>
