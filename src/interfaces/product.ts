@@ -12,11 +12,16 @@ export interface FilterParams {
   minPrice?: string;
   maxPrice?: string;
   name?: string;
-  offset: number;
+  page: number;
+  pageSize: number;
 }
 
 export interface GetProductsParams {
   filters?: FilterParams;
-  limit: number;
-  offset: number;
+  page: number;
+  pageSize: number;
+}
+
+export interface ProductPaginationInterface {
+  totalPages: number;
 }

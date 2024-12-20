@@ -3,14 +3,12 @@ import { ProductCard, ProductSkeleton } from '@/components/ui/product-card';
 import Filters from '@/components/ui/filters';
 import { getProducts } from '@/lib/db';
 import { FilterParams } from '@/interfaces/product';
+import ProductPagination from '@/components/ui/product-pagination';
 
-export default async function Products(props: {
-  searchParams: Promise<FilterParams>;
-}) {
-  const searchParams = await props.searchParams;
+export default async function Products(props: { searchParams: FilterParams }) {
+  const searchParams = props.searchParams;
   const filters = {
     ...searchParams,
-    offset: searchParams.offset ?? 0,
   };
 
   return (
@@ -23,10 +21,13 @@ export default async function Products(props: {
 }
 
 const ProductsList = async ({ filters }: { filters: FilterParams }) => {
-  const { products } = await getProducts({
+  const page = Number(filters.page) || 1;
+  const pageSize = filters.pageSize || 6;
+
+  const { products, totalPages } = await getProducts({
     filters,
-    limit: 6,
-    offset: filters.offset,
+    page,
+    pageSize,
   });
 
   return (
@@ -37,6 +38,11 @@ const ProductsList = async ({ filters }: { filters: FilterParams }) => {
           <ProductCard key={product.id} {...product} />
         ))}
       </div>
+      {totalPages > 1 && (
+        <div className="my-4">
+          <ProductPagination totalPages={totalPages} />
+        </div>
+      )}
     </>
   );
 };

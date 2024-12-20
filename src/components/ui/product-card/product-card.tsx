@@ -56,7 +56,7 @@ export const ProductSkeleton = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full">
       {[...Array(6)].map((_, index) => (
-        <div key={index} className="flex m-5 flex-col items-start gap-2">
+        <div key={index} className="flex m-5 flex-col items-start gap-1">
           <Skeleton className="w-full h-80" />
           <Skeleton className="h-5 w-28" />
           <Skeleton className="h-5 w-20" />

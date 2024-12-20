@@ -34,12 +34,12 @@ export const insertProductSchema = createInsertSchema(products);
 
 export async function getProducts({
   filters,
-  limit,
-  offset,
+  page = 1,
+  pageSize = 10,
 }: GetProductsParams) {
-  if (offset === null) {
-    return { products: [], newOffset: null, totalProducts: 0 };
-  }
+  const validPage = Math.max(1, page);
+  const validPageSize = Math.max(1, pageSize);
+  const offset = (validPage - 1) * validPageSize;
 
   const whereConditions = [];
 
@@ -60,27 +60,32 @@ export async function getProducts({
   const whereClause =
     whereConditions.length > 0 ? and(...whereConditions) : undefined;
 
-  let totalProductsQuery = db
-    .select({ value: count() })
+  const totalProductsQuery = db
+    .select({ count: count(products.id) })
     .from(products)
     .$dynamic();
+
   let productsQuery = db.select().from(products).$dynamic();
 
   if (whereClause) {
-    totalProductsQuery = totalProductsQuery.where(whereClause);
+    totalProductsQuery.where(whereClause);
     productsQuery = productsQuery.where(whereClause);
   }
 
-  const [totalProductsResult, moreProducts] = await Promise.all([
+  const [totalProductsResult, productsResult] = await Promise.all([
     totalProductsQuery,
-    productsQuery.limit(limit).offset(offset),
+    productsQuery.limit(validPageSize).offset(offset),
   ]);
 
-  const newOffset = moreProducts.length >= limit ? offset + limit : null;
+  const totalProducts = Number(totalProductsResult[0].count);
+  const totalPages = Math.ceil(totalProducts / validPageSize);
 
   return {
-    products: moreProducts,
-    newOffset,
-    totalProducts: totalProductsResult[0].value,
+    products: productsResult,
+    currentPage: validPage,
+    totalPages,
+    totalProducts,
+    hasNextPage: validPage < totalPages,
+    hasPreviousPage: validPage > 1,
   };
 }
