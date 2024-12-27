@@ -1,5 +1,7 @@
+'use client';
+
 import Image from 'next/image';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { Badge } from '../badge';
 import { Skeleton } from '../skeleton';
 import {
@@ -12,6 +14,7 @@ import {
 } from '../card';
 import Link from 'next/link';
 import { Product } from '@/interfaces/product';
+import { Button } from '../button';
 
 export const ProductCard = ({
   id,
@@ -21,20 +24,33 @@ export const ProductCard = ({
   stock,
   status,
 }: Product) => {
+  const addToCartHandler: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <Link href={`/products/${id}`}>
       <Card className="relative bg-transparent shadow-none overflow-hidden border-none gap-1 rounded-none">
         <CardHeader className="p-0">
-          <div className="relative w-full h-80 overflow-hidden">
+          <div className="relative w-full h-80 overflow-hidden group transition">
             <Image
               src={imageUrl}
               alt="Product Image"
               objectFit="cover"
               layout="fill"
-              className="hover:scale-110 transition-all duration-500"
+              className="group-hover:scale-105 transition-all duration-500"
               width={0}
               height={0}
             />
+            <Button
+              className="absolute bottom-0 w-full rounded-none uppercase 
+                opacity-0 translate-y-full group-hover:translate-y-0 group-hover:opacity-100
+                transition-all duration-300 text-xs"
+              variant="secondary"
+              onClick={addToCartHandler}
+            >
+              Add to Cart
+            </Button>
           </div>
           <CardTitle className="text-sm font-bold text">{name}</CardTitle>
           <CardDescription />

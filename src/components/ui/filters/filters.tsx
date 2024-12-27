@@ -52,7 +52,7 @@ const Filters = () => {
 
   return (
     <Sheet>
-      <SheetTrigger className="float-end mt-[-35px]">
+      <SheetTrigger className="float-end">
         <Button
           asChild
           variant={filterCount > 0 ? 'default' : 'outline'}

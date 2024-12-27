@@ -11,7 +11,7 @@ import {
   pgEnum,
   serial,
 } from 'drizzle-orm/pg-core';
-import { count, ilike, between, and } from 'drizzle-orm';
+import { count, ilike, between, and, eq } from 'drizzle-orm';
 import { createInsertSchema } from 'drizzle-zod';
 import { GetProductsParams } from '@/interfaces/product';
 
@@ -88,4 +88,18 @@ export async function getProducts({
     hasNextPage: validPage < totalPages,
     hasPreviousPage: validPage > 1,
   };
+}
+
+export async function getProductById(id: number) {
+  const product = await db
+    .select()
+    .from(products)
+    .where(eq(products.id, id))
+    .limit(1);
+
+  if (!product.length) {
+    return null;
+  }
+
+  return product[0];
 }
