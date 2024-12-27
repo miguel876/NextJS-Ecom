@@ -20,7 +20,7 @@ export default async function Products(props: { searchParams: FilterParams }) {
   );
 }
 
-const ProductsList = async ({ filters }: { filters: FilterParams }) => {
+async function ProductsList({ filters }: { filters: FilterParams }) {
   const page = Number(filters.page) || 1;
   const pageSize = filters.pageSize || 6;
 
@@ -45,4 +45,4 @@ const ProductsList = async ({ filters }: { filters: FilterParams }) => {
       )}
     </>
   );
-};
+}
