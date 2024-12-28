@@ -15,26 +15,30 @@ import {
 import Link from 'next/link';
 import { Product } from '@/interfaces/product';
 import { Button } from '../button';
+import { useCartStore } from '@/store/cart';
+import { useToast } from '../use-toast';
+import { ShoppingCart } from 'lucide-react';
 
-export const ProductCard = ({
-  id,
-  name,
-  imageUrl,
-  price,
-  stock,
-  status,
-}: Product) => {
+export const ProductCard = ({ ...product }: Product) => {
+  const addItem = useCartStore((state) => state.addItem);
+  const { toast } = useToast();
+
   const addToCartHandler: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
+    toast({
+      title: 'Item added to cart',
+      description: `The item ${product.name} was added to the cart.`,
+    });
+    addItem(product);
   };
 
   return (
-    <Link href={`/products/${id}`}>
+    <Link href={`/products/${product.id}`}>
       <Card className="relative bg-transparent shadow-none overflow-hidden border-none gap-1 rounded-none">
         <CardHeader className="p-0">
           <div className="relative w-full h-80 overflow-hidden group transition">
             <Image
-              src={imageUrl}
+              src={product.imageUrl}
               alt="Product Image"
               objectFit="cover"
               layout="fill"
@@ -45,24 +49,22 @@ export const ProductCard = ({
             <Button
               className="absolute bottom-0 w-full rounded-none uppercase 
                 opacity-0 translate-y-full group-hover:translate-y-0 group-hover:opacity-100
-                transition-all duration-300 text-xs"
+                transition-all duration-300 text-xs flex gap-1"
               variant="secondary"
               onClick={addToCartHandler}
             >
-              Add to Cart
+              <ShoppingCart size={14} /> Add to Cart
             </Button>
           </div>
-          <CardTitle className="text-sm font-bold text">{name}</CardTitle>
+          <CardTitle className="text-sm font-bold text">
+            {product.name}
+          </CardTitle>
           <CardDescription />
         </CardHeader>
         <CardContent className="p-0">
-          <div className="text-sm">{price}</div>
+          <div className="text-md">{product.price} €</div>
         </CardContent>
-        <CardFooter className="p-0 mt-2">
-          <Badge>
-            <div className="text-xs">{stock}</div>
-          </Badge>
-        </CardFooter>
+        <CardFooter className="p-0 mt-2"></CardFooter>
       </Card>
     </Link>
   );

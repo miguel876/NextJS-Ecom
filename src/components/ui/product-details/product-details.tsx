@@ -10,11 +10,12 @@ import { getProductById } from '@/lib/db';
 import { Check, Ship, X } from 'lucide-react';
 import Image from 'next/image';
 import { ProductDetailCta } from './product-detail-cta';
+import { ProductQuantityForm } from './product-quantity-form';
 
 export const ProductDetails = async ({ id }: { id: string }) => {
   const product = await getProductById(parseInt(id, 10));
 
-  if (!product) return;
+  if (!product) return null;
 
   const hasStock = product?.stock > 0;
 
@@ -45,15 +46,7 @@ export const ProductDetails = async ({ id }: { id: string }) => {
             {hasStock ? <Check size={17} /> : <X size={17} />}
             {hasStock ? 'In Stock' : 'Out of Stock'}
           </p>
-          <div className="flex items-center gap-2">
-            <Label>Quantity:</Label>
-            <Input
-              type="number"
-              defaultValue="1"
-              className="text-sm h-8 w-16"
-            />
-          </div>
-          {hasStock && <ProductDetailCta />}
+          {hasStock && <ProductQuantityForm product={product} />}
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>Financing</AccordionTrigger>

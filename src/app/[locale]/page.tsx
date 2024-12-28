@@ -1,6 +1,4 @@
-import Banner from '@/components/ui/banner';
-import { BannerSkeleton } from '@/components/ui/banner/Banner';
-import { BannerType } from '@/components/ui/banner/banner.types';
+import { Banner, BannerSkeleton, BannerType } from '@/components/ui/banner';
 import { ContactUs } from '@/components/ui/contact-us';
 import { Discover } from '@/components/ui/discover';
 import ProductHightlights, {

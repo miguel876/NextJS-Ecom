@@ -8,6 +8,7 @@ import { Providers } from './providers';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import SmoothScroll from '@/components/ui/smooth-scroll';
+import { Toaster } from '@/components/ui/toaster';
 
 const font = Lato({ weight: ['400'], subsets: ['latin'] });
 
@@ -36,6 +37,7 @@ export default async function LocaleLayout({
               <SmoothScroll>
                 <Header />
                 <main>{children}</main>
+                <Toaster />
                 <Footer />
               </SmoothScroll>
             </NextIntlClientProvider>
