@@ -12,7 +12,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { useCartStore } from '@/store/cart';
-import { ShoppingCart, X } from 'lucide-react';
+import { CreditCard, ShoppingCart, X } from 'lucide-react';
 import Image from 'next/image';
 import {
   AlertDialog,
@@ -127,9 +127,13 @@ const Cart = () => {
         </SheetHeader>
         <SheetFooter>
           <div className="w-full">
-            <div className="text-xl mb-3">Total: {total} €</div>
+            <div className="text-xl mb-3">
+              Total: <b>{total} €</b>
+            </div>
             <SheetClose asChild>
-              <Button className="w-full uppercase">Continue to Checkout</Button>
+              <Button className="w-full uppercase flex gap-1">
+                <CreditCard size={15} /> Continue to Checkout
+              </Button>
             </SheetClose>
           </div>
         </SheetFooter>

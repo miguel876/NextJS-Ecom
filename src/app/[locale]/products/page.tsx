@@ -39,7 +39,7 @@ async function ProductsList({ filters }: { filters: FilterParams }) {
         ))}
       </div>
       {totalPages > 1 && (
-        <div className="my-4">
+        <div className="my-5">
           <ProductPagination totalPages={totalPages} />
         </div>
       )}

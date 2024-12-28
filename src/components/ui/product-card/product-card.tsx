@@ -62,13 +62,9 @@ export const ProductCard = ({ ...product }: Product) => {
           <CardDescription />
         </CardHeader>
         <CardContent className="p-0">
-          <div className="text-sm">{product.price}</div>
+          <div className="text-md">{product.price} €</div>
         </CardContent>
-        <CardFooter className="p-0 mt-2">
-          <Badge>
-            <div className="text-xs">{product.stock}</div>
-          </Badge>
-        </CardFooter>
+        <CardFooter className="p-0 mt-2"></CardFooter>
       </Card>
     </Link>
   );
