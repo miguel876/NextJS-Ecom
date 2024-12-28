@@ -9,12 +9,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { getInitials } from '@/lib/utils';
-import { CiShoppingCart } from 'react-icons/ci';
 import DropdownMenu from './dropdown';
 import ThemeSwitch from '@/components/ui/theme-switch';
 import menus from './menus.json';
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
+import Cart from './cart';
 
 const Header = () => {
   const { data: session } = useSession();
@@ -75,7 +75,7 @@ const Header = () => {
                   <DropdownMenu />
                 </CNDropdownMenu>
               )}
-              <CiShoppingCart size={20} />
+              <Cart />
             </div>
           </div>
         </div>

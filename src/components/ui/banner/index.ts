@@ -1,3 +1,5 @@
-import { Banner } from "./Banner";
+import { BannerType } from './banner.types';
+import { BannerSkeleton, Banner } from './banner';
 
-export default Banner;
+export { Banner, BannerSkeleton };
+export type { BannerType };
