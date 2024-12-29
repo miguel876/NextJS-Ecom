@@ -1,23 +1,15 @@
-import 'server-only';
-
-import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
 import {
   pgTable,
   text,
   numeric,
   integer,
   timestamp,
-  pgEnum,
   serial,
 } from 'drizzle-orm/pg-core';
-import { count, ilike, between, and, eq } from 'drizzle-orm';
+import { db, statusEnum } from './db';
 import { createInsertSchema } from 'drizzle-zod';
 import { GetProductsParams } from '@/interfaces/product';
-
-export const db = drizzle(neon(process.env.POSTGRES_URL!));
-
-export const statusEnum = pgEnum('status', ['active', 'inactive', 'archived']);
+import { and, between, count, eq, ilike } from 'drizzle-orm';
 
 export const products = pgTable('products', {
   id: serial('id').primaryKey(),

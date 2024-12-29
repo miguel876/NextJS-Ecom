@@ -1,18 +1,21 @@
-"use server";
+'use server';
 
-import db from '@/lib/firestore';
-import { collection, getDocs } from '@firebase/firestore';
 import { TwoColumnLayoutProps } from './two-column-layout.types';
 import TwoColumnContainer from './two-column-container';
+import { getHeroes } from '@/lib/db/heroes';
 
 export default async function TwoColumnLayout() {
-    const querySnapshot = await getDocs(collection(db, "banners"))
-    const productBanners = querySnapshot.docs.map((doc) => ({ ...doc.data() as TwoColumnLayoutProps }))
+  const heroes = await getHeroes();
 
   return (
-    <div className='container my-20'>
-      { productBanners.map((productBanner, i) => <TwoColumnContainer key={`homepage-banner-${productBanner.id}`} {...productBanner} isEven={i % 2 === 0 } />) }
+    <div className="container my-20">
+      {heroes.map((productBanner, i) => (
+        <TwoColumnContainer
+          key={`homepage-banner-${productBanner.id}`}
+          {...productBanner}
+          isEven={i % 2 === 0}
+        />
+      ))}
     </div>
-    
   );
-};
+}

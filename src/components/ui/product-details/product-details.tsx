@@ -4,13 +4,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { getProductById } from '@/lib/db';
 import { Check, Ship, X } from 'lucide-react';
 import Image from 'next/image';
-import { ProductDetailCta } from './product-detail-cta';
 import { ProductQuantityForm } from './product-quantity-form';
+import { getProductById } from '@/lib/db/products';
 
 export const ProductDetails = async ({ id }: { id: string }) => {
   const product = await getProductById(parseInt(id, 10));
