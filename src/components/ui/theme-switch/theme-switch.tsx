@@ -10,7 +10,7 @@ export const ThemeSwitch = () => {
 
   return (
     <Button
-      variant="outline"
+      variant="link"
       size="sm"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
