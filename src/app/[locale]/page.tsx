@@ -1,12 +1,11 @@
-import { Banner, BannerSkeleton, BannerType } from '@/components/ui/banner';
+import { Banner, BannerSkeleton } from '@/components/ui/banner';
 import { ContactUs } from '@/components/ui/contact-us';
 import { Discover } from '@/components/ui/discover';
 import ProductHightlights, {
   ProductHightlightsSkeleton,
 } from '@/components/ui/product-highlights/product-highlights';
 import TwoColumnLayout from '@/components/ui/two-column-layout/two-column-layout';
-import db from '@/lib/firestore';
-import { collection, getDocs } from '@firebase/firestore';
+import { getBanners } from '@/lib/db/banners';
 import { Suspense } from 'react';
 
 export default async function Home() {
@@ -26,10 +25,7 @@ export default async function Home() {
 }
 
 async function HomepageBanner() {
-  const querySnapshot = await getDocs(collection(db, 'homepage-banner'));
-  const banners = querySnapshot.docs.map((doc) => ({
-    ...(doc.data() as BannerType),
-  }));
+  const banners = await getBanners();
 
   return <Banner banners={banners} />;
 }

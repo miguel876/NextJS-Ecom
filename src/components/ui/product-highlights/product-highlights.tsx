@@ -2,7 +2,7 @@
 
 import { Skeleton } from '../skeleton';
 import { ProductCard } from '../product-card';
-import { getProducts } from '@/lib/db';
+import { getProducts } from '@/lib/db/products';
 
 export default async function ProductHightlights() {
   const { products } = await getProducts({ page: 1, pageSize: 3 });

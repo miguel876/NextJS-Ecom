@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import { ProductCard, ProductSkeleton } from '@/components/ui/product-card';
 import Filters from '@/components/ui/filters';
-import { getProducts } from '@/lib/db';
 import { FilterParams } from '@/interfaces/product';
 import ProductPagination from '@/components/ui/product-pagination';
+import { getProducts } from '@/lib/db/products';
 
 export default async function Products(props: { searchParams: FilterParams }) {
   const searchParams = props.searchParams;

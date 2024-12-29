@@ -1,7 +1,7 @@
 export interface TwoColumnLayoutProps {
-    id: string;
-    title: string;
-    imgUrl: string;
-    text: string;
-    isEven: boolean;
+  id: number;
+  title: string;
+  imgUrl: string;
+  text: string;
+  isEven: boolean;
 }
