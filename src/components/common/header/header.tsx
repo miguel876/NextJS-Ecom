@@ -4,17 +4,13 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import GoogleLogin from '@/app/(auth)/login/GoogleLogin';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import {
-  DropdownMenu as CNDropdownMenu,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import { getInitials } from '@/lib/utils';
 import ThemeSwitch from '@/components/ui/theme-switch';
 import menus from './menus.json';
 import { signOut, useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import Cart from './cart';
-import { Menu, Settings, User, UserRound } from 'lucide-react';
+import { Menu, Settings, UserRound } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -24,12 +20,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 
 const Header = () => {
