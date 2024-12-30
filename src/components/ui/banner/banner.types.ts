@@ -1,11 +1,9 @@
-type ButtonProps = {
-  title: string;
-  link: string;
-};
-
-export type Props = {
+export interface BannerType {
+  id: number;
+  subtitle: string;
   title: string;
   description: string;
   imgUrl: string;
-  cta?: ButtonProps;
-};
+  ctaTitle: string;
+  ctaLink: string;
+}

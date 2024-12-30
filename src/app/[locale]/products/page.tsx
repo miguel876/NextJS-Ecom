@@ -1,36 +1,48 @@
 import { Suspense } from 'react';
-import db from '@/lib/firestore';
-import { collection, getDocs } from "firebase/firestore";
-import { ProductCard, ProductSkeleton } from '@/components/ui/product-card/product-card';
+import { ProductCard, ProductSkeleton } from '@/components/ui/product-card';
+import Filters from '@/components/ui/filters';
+import { FilterParams } from '@/interfaces/product';
+import ProductPagination from '@/components/ui/product-pagination';
+import { getProducts } from '@/lib/db/products';
 
-type ProductType = {
-  id: string;
-  title: string;
-  imgUrl: string;
-  price: string;
-  badges: [];
-};
+export default async function Products(props: { searchParams: FilterParams }) {
+  const searchParams = props.searchParams;
+  const filters = {
+    ...searchParams,
+  };
 
-export default function Products() {
   return (
-    <div className="container flex gap-2">
+    <div className="container">
       <Suspense fallback={<ProductSkeleton />}>
-        <ProductsList />
+        <ProductsList filters={filters} />
       </Suspense>
-
     </div>
   );
 }
 
-const ProductsList = async () => {
-  const querySnapshot = await getDocs(collection(db, "products"))
-  const products = querySnapshot.docs.map((doc) => ({ ...doc.data() as ProductType }))
+async function ProductsList({ filters }: { filters: FilterParams }) {
+  const page = Number(filters.page) || 1;
+  const pageSize = filters.pageSize || 6;
+
+  const { products, totalPages } = await getProducts({
+    filters,
+    page,
+    pageSize,
+  });
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-2">
-      {products.map((product) => (
-        <ProductCard key={product.title} {...product} />
-      ))}
-    </div>
+    <>
+      <Filters />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-3">
+        {products.map((product) => (
+          <ProductCard key={product.id} {...product} />
+        ))}
+      </div>
+      {totalPages > 1 && (
+        <div className="my-5">
+          <ProductPagination totalPages={totalPages} />
+        </div>
+      )}
+    </>
   );
-};
+}

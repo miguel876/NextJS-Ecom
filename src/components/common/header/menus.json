@@ -1,0 +1,17 @@
+[
+  {
+    "id": "about",
+    "label": "About",
+    "link": "#about"
+  },
+  {
+    "id": "products",
+    "label": "Products",
+    "link": "/products"
+  },
+  {
+    "id": "discover",
+    "label": "Discover",
+    "link": "#discover"
+  }
+]

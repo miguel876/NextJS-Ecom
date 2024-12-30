@@ -1,1 +1,14 @@
-{}
+{
+    "labels": {
+        "discover": "Descubra",
+        "contactUs": "Contacte-nos",
+        "send": "Enviar",
+        "loading": "A carregar...",
+        "email": "Email",
+        "filter": "Filtrar e Ordenar"
+    },
+    "menus": {
+        "home": "Homepage",
+        "products": "Produtos"
+    }
+}

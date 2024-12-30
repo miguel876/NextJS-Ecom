@@ -1,1 +1,16 @@
-{}
+{
+    "labels": {
+        "discover": "Discover",
+        "discoverText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed viverra enim, dignissim lacinia est.",
+        "viewProducts": "View all products",
+        "contactUs": "Contact us",
+        "send": "Send",
+        "loading": "Loading...",
+        "email": "Email",
+        "filter": "Filter and Order"
+    },
+    "menus": {
+        "home": "Homepage",
+        "products": "Products"
+    }
+}
