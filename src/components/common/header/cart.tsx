@@ -28,6 +28,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 const Cart = () => {
   const { items, total, removeItem } = useCartStore((state) => state);
@@ -48,7 +49,7 @@ const Cart = () => {
               exit={{ scale: 0, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             >
-              <Badge className="absolute p-1 h-4 rounded-full text-[10px] font-thin">
+              <Badge className="absolute bottom-[-10px] p-1 h-4 rounded-full text-[10px] font-thin">
                 {items.length}
               </Badge>
             </motion.div>
@@ -67,14 +68,16 @@ const Cart = () => {
                     className="flex justify-between"
                   >
                     <div className="flex gap-3">
-                      <Image
-                        src={item.imageUrl}
-                        width={100}
-                        height={100}
-                        alt="Product cart image"
-                        className="rounded-lg"
-                      />
-                      <div>
+                      <Link href={`/products/${item.id}`}>
+                        <Image
+                          src={item.imageUrl}
+                          width={100}
+                          height={100}
+                          alt="Product cart image"
+                          className="rounded-lg "
+                        />
+                      </Link>
+                      <div className="text-left">
                         <p className="font-bold">{item.name}</p>
                         <p className="text-lg font-bold text-primary">
                           {item.price} €

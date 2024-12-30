@@ -4,7 +4,7 @@ import { CiInstagram, CiFacebook } from 'react-icons/ci';
 
 const Footer = () => {
   return (
-    <div className="py-4 container grid grid-cols-3 grid-rows-1">
+    <div className="py-4 container grid grid-cols-1 md:grid-cols-3 grid-rows-1 md:grid-rows-2 gap-2">
       <div></div>
       <div className="flex gap-2 items-center justify-center">
         <Link href="/">
@@ -14,7 +14,7 @@ const Footer = () => {
           <CiFacebook size={20} />
         </Link>
       </div>
-      <div className="flex justify-end items-center">
+      <div className="flex justify-center md:justify-end items-center">
         <p className="text-xs">© 2024 MigStore. All rights reserved.</p>
       </div>
     </div>
