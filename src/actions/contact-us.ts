@@ -20,11 +20,13 @@ export async function sendEmail(prevState: any, formData: FormData) {
       };
     }
 
+    console.log(validatedFields.data.email);
+
     // Send email using your email service
     await resend.emails.send({
-      from: 'You <onboarding@resend.dev>',
-      to: validatedFields.data.email,
-      subject: 'Welcome!',
+      from: 'Miguel Santos <miguel_santos96@hotmail.com>',
+      to: [validatedFields.data.email],
+      subject: 'Contact Us Migstore!',
       react: ContactUsEmail(),
     });
 

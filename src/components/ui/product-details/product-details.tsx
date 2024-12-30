@@ -25,7 +25,7 @@ export const ProductDetails = async ({ id }: { id: string }) => {
             alt="Procut Detail Image"
             width={700}
             height={500}
-            className="rounded-lg"
+            className="rounded-lg w-full"
             priority
           />
         </div>

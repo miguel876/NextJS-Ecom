@@ -8,7 +8,7 @@ export default async function TwoColumnLayout() {
   const heroes = await getHeroes();
 
   return (
-    <div className="container my-20">
+    <div className="container my-12 md:my-20">
       {heroes.map((productBanner, i) => (
         <TwoColumnContainer
           key={`homepage-banner-${productBanner.id}`}

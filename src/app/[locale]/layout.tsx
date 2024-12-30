@@ -29,7 +29,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning className="h-full w-full">
       <body
-        className={`${font.className} bg-zinc-200 dark:bg-zinc-950 min-h-screen`}
+        className={`${font.className} bg-zinc-200 dark:bg-zinc-950 min-h-screen overflow-x-hidden`}
       >
         <Providers>
           <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID || ''}>

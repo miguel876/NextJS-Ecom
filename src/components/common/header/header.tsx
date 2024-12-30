@@ -43,16 +43,12 @@ const Header = () => {
       className={`${
         isHomePage ? 'fixed' : 'sticky'
       } z-10 top-0 w-full transition-colors duration-300 ${
-        scrolled ? 'bg-background' : ''
+        scrolled ? 'bg-background shadow-md' : ''
       }`}
     >
-      <div className="w-100 px-2 pt-2">
+      <div className="w-100 pt-2">
         <div className="container">
-          <div
-            className={`${
-              scrolled ? 'shadow-md' : ' '
-            } pb-2 flex justify-between items-center`}
-          >
+          <div className="pb-2 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <Sheet>
                 <SheetTrigger>

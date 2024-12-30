@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   const { items, email } = await req.json();
 
   const customer = await stripe.customers.create({
-    email: email,
+    email,
   });
 
   const line_items = items.map(
