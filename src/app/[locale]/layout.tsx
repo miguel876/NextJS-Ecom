@@ -15,6 +15,9 @@ const font = Lato({ weight: ['400'], subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'MigStore',
   description: 'MigStore is an ecommerce website template',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default async function LocaleLayout({
