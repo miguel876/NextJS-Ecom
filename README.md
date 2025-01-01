@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Migstore
+
+Migstore is an ecommerce website template created with NextJS and ShadCN.
+
+## Features
+
+- Product listing with pagination and filters by URL so it can be easily shared.
+- Modern design using ShadCN components.
+- Contact form using the React Resend library.
+- Stripe integration for payment processing and checkout.
+- Basic user sign in with Google and theme switch.
+- Responsive design.
+
+## Technologies
+- [NextJS](https://nextjs.org/)
+- [Tailwind](https://tailwindcss.com/)
+- [ShadCN](https://ui.shadcn.com/)
+- [Zustand](https://zustand-demo.pmnd.rs/)
+- [Neon DB](https://neon.tech/)
+- [Resend](https://react.email/docs/introduction)
+
+## Deployment
+
+This project is deployed on [Vercel](https://vercel.com/). You can view the live application at [https://next-js-ecom-neon.vercel.app/](https://next-js-ecom-neon.vercel.app/).
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to set up the project locally.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js (version 14 or later)
+- npm or yarn
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repository:
 
-## Learn More
+   ```bash
+   git clone https://github.com/yourusername/your-repo-name.git
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Navigate to the project directory:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   cd your-repo-name
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Install the dependencies:
 
-## Deploy on Vercel
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Set up environment variables:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   Create a `.env.local` file in the root of your project and add the following variables:
+
+   ```plaintext
+   NEXT_PUBLIC_STRIPE_PUBLIC_KEY=your_public_key
+   STRIPE_SECRET_KEY=your_secret_key
+   RESEND_KEY=your_resend_key
+   STRIPE_WEBHOOK_SECRET=your_webhook_secret
+   ```
+
+## Usage
+
+To start the development server, run:
+   ```bash
+   npm run dev
+   # or
+   yarn start
+   ```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
