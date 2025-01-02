@@ -91,7 +91,11 @@ const Cart = () => {
                     <div>
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
-                          <Button variant="link" className="p-0 h-4 text-none">
+                          <Button
+                            variant="link"
+                            className="p-0 h-4 text-none"
+                            aria-label="Remove cart item"
+                          >
                             <X
                               size={17}
                               className="text-default hover:text-primary"
@@ -130,7 +134,7 @@ const Cart = () => {
         </SheetHeader>
         <SheetFooter>
           <div className="w-full">
-            <div className="text-xl mb-3">
+            <div className="text-xl mb-3" aria-label="Total cart">
               Total: <b>{total} €</b>
             </div>
             <SheetClose asChild>
