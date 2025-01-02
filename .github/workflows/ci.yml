@@ -2,12 +2,13 @@ name: NextJS CI/CD
 
 on:
   pull_request:
-    branches: [ main, dev ]
+    branches: ['main', 'dev']
+
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    
+  
     steps:
     - uses: actions/checkout@v4
     
