@@ -1,33 +1,27 @@
-name: NextJS CI
+name: NextJS CI/CD
 
 on:
   pull_request:
     branches: ['main', 'dev']
 
 jobs:
-  verify:
+  build-and-test:
     runs-on: ubuntu-latest
+    container: node:20
 
     steps:
-      # Checkout the repository manually
-      - name: Checkout repository
-        run: |
-          git clone ${{ github.repository_url }} .
-          git fetch --depth=1 origin ${{ github.head_ref || github.ref_name }}
-          git checkout ${{ github.head_ref || github.ref_name }}
+      - run: node --version
+      - run: npm --version
+      - uses: actions/checkout@v4
 
-      # Set up Node.js manually
-      - name: Set up Node.js
-        run: |
-          curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-          sudo apt-get install -y nodejs
-          node -v
-          npm -v
+      - name: Install dependencies
+        run: npm install
 
-      # Install dependencies, lint, test, and build
-      - name: Install dependencies and run checks
-        run: |
-          npm ci
-          npm run lint
-          npm test
-          npm run build
+      - name: Run linting
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Build project
+        run: npm run build
