@@ -12,10 +12,9 @@ jobs:
       # Checkout the repository manually
       - name: Checkout repository
         run: |
-          git clone ${{ github.repository_url }} repo
-          cd repo
-          git fetch --depth=1 origin ${{ github.ref_name }}
-          git checkout ${{ github.ref_name }}
+          git clone ${{ github.repository_url }} .
+          git fetch --depth=1 origin ${{ github.head_ref || github.ref_name }}
+          git checkout ${{ github.head_ref || github.ref_name }}
 
       # Set up Node.js manually
       - name: Set up Node.js
@@ -28,7 +27,6 @@ jobs:
       # Install dependencies, lint, test, and build
       - name: Install dependencies and run checks
         run: |
-          cd repo
           npm ci
           npm run lint
           npm test
