@@ -51,7 +51,7 @@ const Header = () => {
           <div className="pb-2 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <Sheet>
-                <SheetTrigger>
+                <SheetTrigger aria-label="Menu button">
                   <Menu />
                 </SheetTrigger>
                 <SheetContent
@@ -83,7 +83,7 @@ const Header = () => {
             </div>
             <div className="flex items-center gap-3">
               <Sheet>
-                <SheetTrigger>
+                <SheetTrigger aria-label="User menu">
                   {!session?.user?.name ? (
                     <UserRound size={20} />
                   ) : (
