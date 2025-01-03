@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: 'MigStore',
   description: 'MigStore is an ecommerce website template',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon.svg',
   },
 };
 
