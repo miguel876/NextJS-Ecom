@@ -30,7 +30,7 @@ export default function TwoColumnContainer({
         <Image
           src={imgUrl}
           alt="Product Image"
-          className="rounded-lg shadow-md size-[28rem]"
+          className="rounded-lg w-[28rem]"
           width={500}
           height={500}
         />

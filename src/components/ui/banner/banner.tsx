@@ -16,12 +16,13 @@ export const Banner = ({ banners }: BannerProps) => {
 
   return banners.map(
     ({ id, subtitle, title, description, imgUrl, ctaTitle, ctaLink }) => (
-      <div key={`banner-${id}`} className="relative w-screen h-screen">
+      <div key={`banner-${id}`} className="relative">
         <Image
           src={imgUrl}
           alt="Banner Product Image"
-          className="object-cover"
-          fill
+          className="w-screen h-screen object-cover "
+          width={2200}
+          height={900}
           priority
         />
         <div className="bg-gradient-to-r dark:from-black from-white from-0% h-full w-full absolute top-0 left-0"></div>
