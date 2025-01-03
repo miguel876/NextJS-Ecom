@@ -13,6 +13,7 @@ export const ThemeSwitch = () => {
       variant="link"
       size="sm"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      aria-label="Theme switch"
     >
       {theme === 'dark' ? <FaSun size={15} /> : <FaMoon size={15} />}
     </Button>
