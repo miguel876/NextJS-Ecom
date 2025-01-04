@@ -34,7 +34,7 @@ Migstore is an ecommerce website template created with NextJS and ShadCN.
 
 ## Deployment
 
-This project is deployed on [Vercel](https://vercel.com/). You can view the live application at [https://next-js-ecom-neon.vercel.app/](https://next-js-ecom-neon.vercel.app/).
+This project is deployed on [Vercel](https://vercel.com/). It also uses Github actions for CI/CD. You can view the live application at [https://next-js-ecom-neon.vercel.app/](https://next-js-ecom-neon.vercel.app/).
 
 ## Getting Started
 
